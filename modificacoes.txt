@@ -1,4 +1,0 @@
-add loadwait barra;
-comentar codigo nas funções mais importantes;
-fazer teste únitário colocar variavel de tempo para definir o tempo gasto em cada função;
-verificar se os nomes das varisaveis estao condizentes;

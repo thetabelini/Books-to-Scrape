@@ -5,19 +5,18 @@ from bs4 import BeautifulSoup
 from datetime import datetime, timezone
 from alive_progress import alive_bar
 
+# Function to send HTTP GET request
 def get_html(url):
     return requests.get(url)
 
-# talvez otimizaria aqui utilizando o lxml. Documentacao informa que é "Very fast" e html é descente kkk
-# Ponto para se medir a performance depois
+# Parse HTML content using BeautifulSoup
 def get_html_content(html):
-    return BeautifulSoup(html.text, 'html.parser')
+    return BeautifulSoup(html.text, 'lxml')
 
+# Extract book URLs from specified variable (PAGES_TO_SCRAPE) of the website
 def get_book_urls(pages: int, homepage: str, book_urls: list) -> list:
- 
     print()
     print('get_book_urls()')
-    somatorio = 0
 
     with alive_bar(pages) as bar:
         for page_number in range(1, pages + 1):
@@ -41,24 +40,30 @@ def get_book_urls(pages: int, homepage: str, book_urls: list) -> list:
 
     return book_urls
 
+# Extract detailed information from a single book page
 def get_book_details(url: str) -> dict:
     try:
         html = get_html(url)
         soup = get_html_content(html)
-
+        
+        # Extract all elements
         product_table = soup.find('table', class_='table-striped')
-        table_data = {row.find('th').text: row.find('td').text for row in product_table.find_all('tr')}
-
-        title = soup.find('h1').text
-        price = table_data.get('Price (incl. tax)')
         genre = soup.find('ul', class_='breadcrumb').find_all('a')[2].text
-        availability = table_data.get('Availability')
+        title = soup.find('h1').text
         rating_classes = soup.find('p', class_='star-rating')['class']
-        rating = f"{rating_classes[1]} out of 5"
         description_tag = soup.find('div', id='product_description')
-        description = description_tag.find_next_sibling('p').text if description_tag else "N/A"
+        
+        # Process table data efficiently
+        table_data = {row.find('th').text: row.find('td').text for row in product_table.find_all('tr')}
+        price = table_data.get('Price (incl. tax)')
+        availability = table_data.get('Availability')
         upc = table_data.get('UPC')
         product_type = table_data.get('Product Type')
+        
+        rating = f"{rating_classes[1]} out of 5"
+        
+        description = description_tag.find_next_sibling('p').text if description_tag else "N/A"
+
         extraction_timestamp = datetime.now(timezone.utc).isoformat()
 
         return {

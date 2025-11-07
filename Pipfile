@@ -8,6 +8,7 @@ beautifulsoup4 = "*"
 requests = "*"
 tqdm = "*"
 alive-progress = "*"
+lxml = "*"
 
 [dev-packages]
 
