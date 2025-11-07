@@ -5,11 +5,14 @@ from bs4 import BeautifulSoup
 from datetime import datetime, timezone
 from alive_progress import alive_bar
 
-# Function to send HTTP GET request
-def get_html(url):
-    return requests.get(url)
+# Create a session for connection reuse and set timeout
+session = requests.Session()
 
-# Parse HTML content using BeautifulSoup
+# Function to send HTTP GET request with timeout and session reuse
+def get_html(url):
+    return session.get(url, timeout=10)
+
+# Parse HTML content using BeautifulSoup with lxml parser for better performance
 def get_html_content(html):
     return BeautifulSoup(html.text, 'lxml')
 
