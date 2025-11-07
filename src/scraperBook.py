@@ -1,4 +1,5 @@
 import requests
+import time
 
 from bs4 import BeautifulSoup
 from datetime import datetime, timezone
@@ -13,8 +14,11 @@ def get_html_content(html):
     return BeautifulSoup(html.text, 'html.parser')
 
 def get_book_urls(pages: int, homepage: str, book_urls: list) -> list:
+    print()
+    somatorio = 0
 
     for page_number in range(1, pages + 1):
+        
         new_url = homepage.replace("-1.html", f"-{page_number}.html")
 
         try:

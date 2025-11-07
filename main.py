@@ -1,4 +1,5 @@
 import datetime
+import time
 
 from typing import List, Dict, Any
 
@@ -17,25 +18,43 @@ def crawler() -> None:
     # Medição de tempo de execução
     inicio = datetime.datetime.now().strftime('%H:%M:%S')
     print("Iniciando o crawler em: ", inicio)
-
+    print()
+    initial_time = time.perf_counter()
+    
     book_urls = get_book_urls(pages_to_scrap, homepage, book)
+    end_time = time.perf_counter()
+    teste = end_time - initial_time
+
+    print("Tempo gasto para obter URLs dos livros: ", teste)
     print(f"Total de URLs de livros encontradas: {len(book_urls)}")
+    print()
 
     if not book_urls:
         print("Nenhuma URL encontrada. Encerrando.")
         return
+    
+    print()
+    initial_time = time.perf_counter()
 
     for url in book_urls:
         details = get_book_details(url)
         if details:
             all_books_data.append(details)
-    print("finalizei a extração dos detalhes dos livros.")
+
+    end_time = time.perf_counter()
+    teste = end_time - initial_time
+    print("Function get_book_details(): ", teste)
 
     
 
     if all_books_data:
+        print()
+        initial_time = time.perf_counter()
         update_json(all_books_data, output_file)
-        print("fazendo a atualização do arquivo JSON.")
+        end_time = time.perf_counter()
+        teste = end_time - initial_time
+        print("Function update_json(): ", teste)
+        print()
     else:
         print("Nenhum dado de livro foi extraído.")
 
