@@ -3,7 +3,7 @@ import time
 
 from bs4 import BeautifulSoup
 from datetime import datetime, timezone
-
+from alive_progress import alive_bar
 
 def get_html(url):
     return requests.get(url)
@@ -14,26 +14,30 @@ def get_html_content(html):
     return BeautifulSoup(html.text, 'html.parser')
 
 def get_book_urls(pages: int, homepage: str, book_urls: list) -> list:
+ 
     print()
+    print('get_book_urls()')
     somatorio = 0
 
-    for page_number in range(1, pages + 1):
-        
-        new_url = homepage.replace("-1.html", f"-{page_number}.html")
+    with alive_bar(pages) as bar:
+        for page_number in range(1, pages + 1):
+            
+            new_url = homepage.replace("-1.html", f"-{page_number}.html")
+            bar()
+            
+            try:
+                html = get_html(new_url)
+                soup = get_html_content(html)
 
-        try:
-            html = get_html(new_url)
-            soup = get_html_content(html)
+                article_rows = soup.find_all('article', class_='product_pod')
 
-            article_rows = soup.find_all('article', class_='product_pod')
+                for row in article_rows:
+                    link_element = row.find('h3').find('a')
+                    link_element['href'] = 'https://books.toscrape.com/catalogue/' + link_element['href']
+                    book_urls.append(link_element['href'])      
 
-            for row in article_rows:
-                link_element = row.find('h3').find('a')
-                link_element['href'] = 'https://books.toscrape.com/catalogue/' + link_element['href']
-                book_urls.append(link_element['href'])
-                    
-        except Exception as e:  
-            print(f"Error ao requisitar nova url {new_url}: {e}")
+            except Exception as e:  
+                print(f"Error ao requisitar nova url {new_url}: {e}")
 
     return book_urls
 
