@@ -1,45 +1,58 @@
+<p align="center">
+  <a href="https://github.com/thetabelini/Books-to-Scrape">
+    <img loading="lazy" alt="Scrape" src="https://github.com/thetabelini/Books-to-Scrape/blob/main/img/aquivo_home.png" width="100%"/>
+  </a>
+</p>
+
 # Books-to-Scrape
 
-Código sendo repassado e avaliado casos de type hint e a utilização do PEP8
+Crawler em Python capaz de extrair as informações requisitadas da página [Books to Scrape](https://books.toscrape.com/index.html).
+O projeto extrai informações detalhadas de livros das primeiras 5 páginas e salva os dados em formato JSON.
 
-Para esse desafio proponho como um bonus de entrega, proponho realizar Test Unitário (taxa 80%)
 
+## Desenvolvedor
 
-## Otimização do Código
-### Section 1 - Implementação / Primeiro teste de perfomance:
-- Na priomeira execução o RPA estava gastando aproximadamente (1:40 ~ 2:00) minutos:
-![First Test](img/first_test.png)
+* Felipe Tabelini Pena
 
-Preciso reduzir esse tempo, pelo menos em 50%.
+## Pré-requisitos
 
----
+- Python 3.13+
+- Pipenv
 
-### Section 2 - Seggundo Teste:
-- Segundo teste modifiquei algumas configurações do print no console. Nessa imagem abaixo é a configuração utilzando:
+## ⚙️ Instalação
 
-* Antes Antes 
-```
-    def get_html_content(html):
-        return BeautifulSoup(html.text, 'lxml') 
+1. Clone o repositório:
+```bash
+git clone https://github.com/thetabelini/Books-to-Scrape.git
+cd Books-to-Scrape
 ```
 
-* Depois
+2. Instale as dependências usando Pipenv:
+```bash
+pipenv install
 ```
-    def get_html_content(html):
-        return BeautifulSoup(html.text, 'html') 
+
+## 🎯 Execução
+
+Execute o crawler com o comando:
+```bash
+pipenv run python main.py
 ```
 
-Adotado pois na [documentação requests](https://beautiful-soup-4.readthedocs.io/en/latest/) informa que xmlx é muito rápida. Mas o resultado obtido não teve grandes impactos.
+O arquivo `books_data.json` será gerado na raiz do projeto com todos os dados extraídos.
 
-* Resultado
-![second Test](img/second_test.png)
 
----
+# Documentação
 
-### Section 3 - Terceiro Teste:
+<ol>
+<li><a href="docs/1-Apresentação.md"> Otimizações de Performance </a></li>
+<li><a href="docs/3-Modelagem-Diagramas.md"> Modelagem e diagramas arquiteturais </a></li>
+<li><a href="docs/4-Avaliação-Resultados.md"> Avaliação Crítica dos Resultados </a></li>
+<li><a href="docs/5-Conclusão.md"> Conclusão </a></li>
+<li><a href="docs/6-Referências.md"> Referências </a></li>
+<li><a href="docs/7-Apêndices.md"> Apêndices </a></li>
+</ol>
 
-Foi feita algumas pesquisas sobre o loop de request em IAs e pela internet, descobri que utilizando o codigo abaixo consigo reutilizar a mesma sessão http para requisitar e obter respostas, sem precisar dar get a cada nova URL de livro.
-Com isso reduzir:
- - Redução de tempo de mais de 87%;
+# Código
 
- ![Third Test](img/third_test.png)
+<li><a href="main.py"> Código Fonte</a></li>
