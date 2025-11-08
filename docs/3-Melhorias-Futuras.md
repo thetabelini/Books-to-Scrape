@@ -4,8 +4,7 @@
 
 Faria a alteração do arquivo JSON, pois é uma estrutura "difícil" de se ler, além de  crescer muito. Pois realizamos a extração apenas de 5 páginas, o nosso arquivo gerado possui cerca 1200 linhas.
 
-### 2. Solução: Banco de Dados MongoDB
-
+Solução: Banco de Dados MongoDB
 Substituiria o arquivo que salva em json e criar uma nova classe para banco, assim poderia ter mais controles dos livros cadastrados ou não.
 
 ## 3. Melhorias Extras (Para Aprender Gradualmente) 
