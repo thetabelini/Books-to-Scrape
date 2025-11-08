@@ -7,7 +7,7 @@ Faria a alteração do arquivo JSON, pois é uma estrutura "difícil" de se ler,
 - Solução: Banco de Dados MongoDB:
 Substituiria o arquivo que salva em json e criar uma nova classe para banco, assim poderia ter mais controles dos livros cadastrados ou não.
 
-## 2. Melhorias Extras (Para Aprender Gradualmente) 
+## 2. Melhorias Extras
 
 ### 2.1 Logs: Acompanhar o que acontece 
 Só vemos prints no terminal. Se der erro, perdemos a informação.
