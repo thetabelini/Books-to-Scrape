@@ -45,12 +45,9 @@ O arquivo `books_data.json` será gerado na raiz do projeto com todos os dados e
 # Documentação
 
 <ol>
-<li><a href="docs/1-Apresentação.md"> Otimizações de Performance </a></li>
-<li><a href="docs/3-Modelagem-Diagramas.md"> Modelagem e diagramas arquiteturais </a></li>
-<li><a href="docs/4-Avaliação-Resultados.md"> Avaliação Crítica dos Resultados </a></li>
-<li><a href="docs/5-Conclusão.md"> Conclusão </a></li>
-<li><a href="docs/6-Referências.md"> Referências </a></li>
-<li><a href="docs/7-Apêndices.md"> Apêndices </a></li>
+<li><a href="docs/1-Modelagem-Diagramas.md"> Otimizações de Performance </a></li>
+<li><a href="docs/2-Performance"> Modelagem e diagramas arquiteturais </a></li>
+<li><a href="docs/3-Melhorias-Futuras"> Melhorias Futuras </a></li>
 </ol>
 
 # Código
