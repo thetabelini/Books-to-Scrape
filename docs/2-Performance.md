@@ -4,7 +4,7 @@
 - **Parser**: BeautifulSoup com parser padrão
 - **Resultado**: Baseline para comparação
 
-![First Test](img/first_test.png)
+![First Test](../img/first_test.png)
 
 ### Teste 2 - Otimização do Parser
 **Mudança implementada:**
@@ -20,7 +20,7 @@ def get_html_content(html):
 
 **Resultado**: Pequena melhoria de performance utilizando o parser `lxml`, conforme [documentação oficial](https://beautiful-soup-4.readthedocs.io/en/latest/).
 
-![Second Test](img/second_test.png)
+![Second Test](../img/second_test.png)
 
 ### Teste 3 - Reutilização de Sessão HTTP
 **Otimização implementada:**
@@ -37,7 +37,7 @@ def get_html(url):
 - ⚡ Tempo final: ~17 segundos
 - 🔄 Reutilização da conexão TCP/SSL entre requisições
 
-![Third Test](img/third_test.png)
+![Third Test](../img/third_test.png)
 
 | Versão | Tempo Execução | Otimização | 
 |--------|----------------|------------|
